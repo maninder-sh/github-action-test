@@ -16,7 +16,16 @@ jobs:
        - name: login via hardcoded secrets
          uses: azure/login@v3
          with:
-           creds: ${{ secrets.AZURE_CREDENTIALS }}
+           creds: |
+            {
+              "clientId": "ef918e69-be10-4267-9ac6-87000e61deb6",
+              "clientSecret": "38A8Q~U~aTmk33LX5b0KdO8NaGRS0Y_fWKG.3bqo",
+              "subscriptionId": "bc401604-b6cc-41b5-8eb3-22ccca3b29ff",
+              "tenantId": "36df4507-8aab-483e-88d3-d7982c300017"
+            }
+
+
+
   
       
       
