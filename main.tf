@@ -1,8 +1,8 @@
 terraform {
   backend "azurerm" {
-     resource_group_name = "rg-test-mani" 
-      storage_account_name = "rgtestmanisg"
-      container_name = "statecontainer"
+     resource_group_name = "rg-test-mn" 
+      storage_account_name = "rgtestmn"
+      container_name = "staty"
       key = "practice.tfstate"
 
   }
@@ -22,13 +22,9 @@ provider "azurerm" {
 
 
 resource "azurerm_resource_group" "RG1" {
-    name     = "Githubactions2"
+    name     = "rg-gh-test"
     location = "East US"
   
 }
 
-resource "azurerm_resource_group" "RG2" {
-    name     = "Githubactions3"
-    location = "East US"
-  
-}
+
