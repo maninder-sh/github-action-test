@@ -1,32 +1,24 @@
 name: test-gha
+
 on:
-  workflow_dispatch:
+  workflow_dispatch: # Allows manual trigger from the Actions tab
+
 jobs:
-  # terraform_install:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v7.0.0
-  #     - name: HashiCorp - Setup Terraform  
-  #       uses: hashicorp/setup-terraform@v4
   azure_login:
-     name: azure login job
-     runs-on: ubuntu-latest
-     steps:
-       - name: login via hardcoded secrets
-         uses: azure/login@v3
-         with:
-           creds: |
-            {
-              "clientId": "ef918e69-be10-4267-9ac6-87000e61deb6",
-              "clientSecret": "38A8Q~U~aTmk33LX5b0KdO8NaGRS0Y_fWKG.3bqo",
-              "subscriptionId": "bc401604-b6cc-41b5-8eb3-22ccca3b29ff",
-              "tenantId": "36df4507-8aab-483e-88d3-d7982c300017"
-            }
+    name: azure login job
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Checkout codebase
+      - name: Checkout code
+        uses: actions/checkout@v4
 
+      # 2. Login using the stored GitHub secret
+      - name: login via stored secret
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-
-  
-      
-      
-      
+      # 3. Verify the login by showing account details
+      - name: Verify Azure CLI access
+        run: |
+          az account show
